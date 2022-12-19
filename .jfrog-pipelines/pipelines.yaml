@@ -35,7 +35,7 @@ pipelines:
       - name: u18dynamic
         type: Bash
         configuration:
-          inputResources:
+          inputSteps:
             - name: c7dynamic
         execution:
           onExecute:
@@ -44,7 +44,7 @@ pipelines:
       - name: u20dynamic
         type: Bash
         configuration:
-          inputResources:
+          inputSteps:
             - name: u18dynamic
         execution:
           onExecute:
