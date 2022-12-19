@@ -11,7 +11,7 @@ resources:
 pipelines:
   - name: deafult_cluster
     steps:
-      {{ if not (or (hasSuffix "d2c" "{{gitBranch}}") (eq "master" "{{gitBranch}}")) }}     
+      {{ if not (hasSuffix "d2c" "{{gitBranch}}") }}     
       - name: cluster
         type: Bash
         configuration:
@@ -40,8 +40,8 @@ pipelines:
         execution:
           onExecute:
             - docker images
-      {{ if not (hasSuffix "d2c" "{{gitBranch}}") }} 
-      - name: u20dynamic
+      {{ if not (or (hasSuffix "d2c" "{{gitBranch}}") (eq "master" "{{gitBranch}}")) }} 
+      - name: cleanup
         type: Bash
         configuration:
           inputSteps:
