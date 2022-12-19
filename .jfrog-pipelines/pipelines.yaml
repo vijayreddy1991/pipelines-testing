@@ -1,0 +1,68 @@
+template: true
+valuesFilePath: ../values.yml
+
+resources:
+  - name: connecting_resource_node_test_1
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+
+pipelines:
+  - name: deafult_cluster
+    steps:
+      {{ if not (or (hasSuffix "d2c" "{{gitBranch}}") (eq "master" "{{gitBranch}}")) }}     
+      - name: cluster
+        type: Bash
+        configuration:
+          outputResources:
+            - name: connecting_resource_node_test_1
+          integrations:
+            - name: vijay
+        execution:
+          onExecute:
+            - write_output connecting_resource_node_test_1 "test=value"
+      {{ end }}  
+      - name: c7dynamic
+        type: Bash
+        configuration:
+          inputResources:
+            - name: connecting_resource_node_test_1
+        execution:
+          onExecute:
+            - docker images
+
+      - name: u18dynamic
+        type: Bash
+        configuration:
+          inputResources:
+            - name: c7dynamic
+        execution:
+          onExecute:
+            - docker images
+      {{ if not (hasSuffix "d2c" "{{gitBranch}}") }} 
+      - name: u20dynamic
+        type: Bash
+        configuration:
+          inputResources:
+            - name: u18dynamic
+        execution:
+          onExecute:
+            - docker images
+      {{ end }}         
+      
+  - name: deafult_d2c
+    steps:
+      {{ if (hasSuffix "d2c" "{{gitBranch}}") }}     
+      - name: branch
+        type: Bash
+        configuration:
+          outputResources:
+            - name: connecting_resource_node_test_1
+          integrations:
+            - name: vijay
+        execution:
+          onExecute:
+            - write_output connecting_resource_node_test_1 "test=value"  
+      
+
