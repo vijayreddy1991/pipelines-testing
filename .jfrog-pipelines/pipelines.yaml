@@ -64,5 +64,6 @@ pipelines:
         execution:
           onExecute:
             - write_output connecting_resource_node_test_1 "test=value"  
+      {{ end }} 
       
 
