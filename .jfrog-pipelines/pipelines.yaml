@@ -57,7 +57,7 @@ pipelines:
       - name: branch
         type: Bash
         configuration:
-          outputResources:
+          inputResources:
             - name: connecting_resource_node_test_1
           integrations:
             - name: vijay
