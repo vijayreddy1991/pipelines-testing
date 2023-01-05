@@ -1,3 +1,11 @@
+resources:
+  - name: git_repo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: vijayreddy1991/pipelines-testing
+      branches:
+        include: master
 pipelines:
   - name: P_WF_pipelines
     configuration:
@@ -20,14 +28,14 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: r_WF_gr
+            - name: git_repo
         execution:
           onExecute:
             - echo $IP_ADDRESS
             - echo $User
 #             - echo $SSH_PRIVATE_KEY
 #             - echo ${int_auto_ssh_publicKey}
-            - pushd $res_r_WF_gr_resourcePath
+            - pushd $res_git_repo_resourcePath
             - touch /tmp/pem_key.pem
             - 
             - echo ${int_test_ssh_privateKey} | sed 's/- /-\n/g; s/ -/\n-/g' | sed '/KEY/! s/ /\n/g'> /tmp/pem_key.pem
