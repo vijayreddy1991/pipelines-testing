@@ -5,7 +5,7 @@ resources:
       gitProvider: varsha_github
       path: vijayreddy1991/pipelines-testing
       branches:
-        include: master
+        include: main
 pipelines:
   - name: P_WF_pipelines
     configuration:
