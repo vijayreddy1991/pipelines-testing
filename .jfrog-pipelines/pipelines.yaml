@@ -42,9 +42,9 @@ pipelines:
             - ls -la
             - ls -la /tmp
             - cat /tmp/pem_key.pem
-            - cat installJenkins.sh
+            - cat ubuntu18installer.sh
             - chmod 400 /tmp/pem_key.pem
-            - scp -i /tmp/pem_key.pem installJenkins.sh ubuntu@$IP_ADDRESS:/home/ubuntu
+            - scp -i /tmp/pem_key.pem ubuntu18installer.sh ubuntu@$IP_ADDRESS:/home/ubuntu
             - ssh -i pem_file_path $IP_ADDRESS "cd /home/$User; ./ubuntu18installer.sh"
 
 
