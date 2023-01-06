@@ -2,7 +2,7 @@ resources:
   - name: git_repo
     type: GitRepo
     configuration:
-      gitProvider: varsha_github
+      gitProvider: vijay
       path: vijayreddy1991/pipelines-testing
       branches:
         include: main
