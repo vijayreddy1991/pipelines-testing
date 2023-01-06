@@ -37,7 +37,6 @@ pipelines:
 #             - echo ${int_auto_ssh_publicKey}
             - pushd $res_git_repo_resourcePath
             - touch /tmp/pem_key.pem
-            - 
             - echo ${int_test_ssh_privateKey} | sed 's/- /-\n/g; s/ -/\n-/g' | sed '/KEY/! s/ /\n/g'> /tmp/pem_key.pem
             - cat /tmp/pem_key.pem
             - ls -la
