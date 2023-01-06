@@ -17,7 +17,7 @@ pipelines:
         readOnly:
           IP_ADDRESS: 
             allowCustom: true
-            default: "100.10.148.254"
+            default: "100.10.161.117"
           User: "ubuntu"
           SSH_PRIVATE_KEY:
             allowCustom: false
