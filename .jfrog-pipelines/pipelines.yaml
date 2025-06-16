@@ -2,27 +2,16 @@ resources:
   - name: git_repo
     type: GitRepo
     configuration:
-      gitProvider: vijay
-      path: vijayreddy1991/pipelines-testing
+      gitProvider: ankit
+      path: ank2005/pipelines-testing
       branches:
         include: main
 pipelines:
   - name: P_WF_pipelines
     configuration:
       integrations:
-        - name: generic
-        - name: vijay
-        - name: test_ssh
-      environmentVariables:
-        readOnly:
-          IP_ADDRESS: 
-            allowCustom: true
-            default: "100.10.161.117"
-          User: "ubuntu"
-          SSH_PRIVATE_KEY:
-            allowCustom: false
-            default:  "${int_test_ssh_privateKey}"
-            description: "SSH private key value in automation"
+        - name: ank_generic
+        - name: ankit
     steps:
       - name: P_WF_step1
         type: Bash
@@ -31,21 +20,8 @@ pipelines:
             - name: git_repo
         execution:
           onExecute:
-            - echo $IP_ADDRESS
-            - echo $User
-#             - echo $SSH_PRIVATE_KEY
-#             - echo ${int_auto_ssh_publicKey}
-            - pushd $res_git_repo_resourcePath
-            - touch /tmp/pem_key.pem
-            - echo ${int_test_ssh_privateKey} | sed 's/- /-\n/g; s/ -/\n-/g' | sed '/KEY/! s/ /\n/g'> /tmp/pem_key.pem
-            - cat /tmp/pem_key.pem
-            - ls -la
-            - ls -la /tmp
-            - cat /tmp/pem_key.pem
-            - cat ubuntu18installer.sh
-            - chmod 400 /tmp/pem_key.pem
-            - scp -i /tmp/pem_key.pem ubuntu18installer.sh ubuntu@$IP_ADDRESS:/home/ubuntu
-            - ssh -i pem_file_path $IP_ADDRESS "cd /home/$User; ./ubuntu18installer.sh"
+            - pwd
+            - echo $int_ank_generic_test
 
 
 
