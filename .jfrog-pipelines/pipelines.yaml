@@ -2,7 +2,7 @@ resources:
   - name: git_repo
     type: GitRepo
     configuration:
-      gitProvider: ankit
+      gitProvider: vijay
       path: vijayreddy1991/pipelines-testing
       branches:
         include: main
@@ -10,8 +10,8 @@ pipelines:
   - name: P_WF_pipelines
     configuration:
       integrations:
-        - name: ank_generic
-        - name: ankit
+        - name: vijay_generic
+        - name: vijay
     steps:
       - name: P_WF_step1
         type: Bash
@@ -21,7 +21,7 @@ pipelines:
         execution:
           onExecute:
             - pwd
-            - echo $int_ank_generic_test
+            - echo $int_vijay_generic_test
 
 
 
