@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: ankit
-      path: ank2005/pipelines-testing
+      path: vijayreddy1991/pipelines-testing
       branches:
         include: main
 pipelines:
